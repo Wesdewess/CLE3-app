@@ -1,7 +1,7 @@
 <?php
+require_once "../../vendor/autoload.php";
 
-
-$image_url = 'https://www.dogingtonpost.com/wp-content/uploads/2014/04/walkingthedog2.jpg';
+$image_url = 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NTU2MzE2MzUyMzgyNDc1/vladimir-putin-9448807-1-402.jpg';
 $api_credentials = array(
     'key' => 'acc_88d815b6f396a9d',
     'secret' => '44a387e30ddec57f1e5d982026b07e89'
@@ -21,9 +21,20 @@ $json_response = json_decode($response);
 
 use \Sightengine\SightengineClient;
 $client = new SightengineClient('1777949695', 'cWYRzhuS2FQPjEvpPSJz');
-$output = $client->check(['{model}'])->set_url('https://d3m9459r9kwism.cloudfront.net/img/examples/example7.jpg');
-$minor_response = json_decode($output);
-vardump($minor_response);
+$output = $client->check(['face-attributes'])->set_url($image_url);
+if(isset($output->faces[0]->attributes)){
+    if ($output->faces[0]->attributes->minor < 0.5) {
+        echo "dit is een volwassene ";
+    } else {
+        echo "dit is een kind ";
+    }
+    echo ($output->faces[0]->attributes->minor * 100) . "% kind, " . ($output->faces[0]->attributes->male * 100) . "% man, " . ($output->faces[0]->attributes->female * 100) . "% vrouw ";
+//var_dump($output->faces[0]->attributes->minor);
+} else{
+ echo "dit is geen mens ";
+}
+
+echo "Het lijkt het meest op: ".$json_response->result->tags[0]->tag->en." en ".$json_response->result->tags[1]->tag->en
 ?>
 
 <!doctype html>
