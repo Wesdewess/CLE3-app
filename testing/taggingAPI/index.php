@@ -1,7 +1,7 @@
 <?php
 require_once "../../vendor/autoload.php";
 
-$image_url = 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE5NTU2MzE2MzUyMzgyNDc1/vladimir-putin-9448807-1-402.jpg';
+$image_url = 'https://www.tripleimpact.nl/uploads/pics/mijn-vrouw-is-heks.png';
 $api_credentials = array(
     'key' => 'acc_88d815b6f396a9d',
     'secret' => '44a387e30ddec57f1e5d982026b07e89'
@@ -29,12 +29,12 @@ if(isset($output->faces[0]->attributes)){
         echo "dit is een kind ";
     }
     echo ($output->faces[0]->attributes->minor * 100) . "% kind, " . ($output->faces[0]->attributes->male * 100) . "% man, " . ($output->faces[0]->attributes->female * 100) . "% vrouw ";
-//var_dump($output->faces[0]->attributes->minor);
+    //var_dump($output->faces[0]->attributes);
 } else{
- echo "dit is geen mens ";
+ echo "er wordt geen mens herkend in deze foto ";
 }
 
-echo "Het lijkt het meest op: ".$json_response->result->tags[0]->tag->en." en ".$json_response->result->tags[1]->tag->en
+echo "Het lijkt het meest op: ".$json_response->result->tags[0]->tag->en." (".$json_response->result->tags[0]->confidence."%) en ".$json_response->result->tags[1]->tag->en." (".$json_response->result->tags[1]->confidence."%)"
 ?>
 
 <!doctype html>
