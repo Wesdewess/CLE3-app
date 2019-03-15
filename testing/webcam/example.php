@@ -1,78 +1,27 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
 </head>
-<body onload="init();">
-<h1>Take a snapshot of the current video stream</h1>
-Click on the Start WebCam button.
-<p>
-    <button onclick="startWebcam();">Start WebCam</button>
-    <button onclick="stopWebcam();">Stop WebCam</button>
-    <button onclick="snapshot();">Take Snapshot</button>
-</p>
-<video onclick="snapshot(this);" width=400 height=400 id="video" controls autoplay></video>
-<p>
 
-    Screenshots : <p>
-    <canvas  id="myCanvas" width="400" height="350"></canvas>
-</body>
+<body>
+<div id="container">
+    <video autoplay="true" id="videoElement">
+
+    </video>
+</div>
 <script>
-    //--------------------
-    // GET USER MEDIA CODE
-    //--------------------
-    navigator.getUserMedia = ( navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia);
+    var video = document.querySelector("#videoElement");
 
-    var video;
-    var webcamStream;
-
-    function startWebcam() {
-        if (navigator.getUserMedia) {
-            navigator.getUserMedia (
-
-                // constraints
-                {
-                    video: true,
-                    audio: false
-                },
-
-                // successCallback
-                function(localMediaStream) {
-                    video = document.querySelector('video');
-                    video.src = window.URL.createObjectURL(localMediaStream);
-                    webcamStream = localMediaStream;
-                },
-
-                // errorCallback
-                function(err) {
-                    console.log("The following error occured: " + err);
-                }
-            );
-        } else {
-            console.log("getUserMedia not supported");
-        }
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({video: true})
+            .then(function(stream) {
+                video.srcObject = stream;
+            })
+            .catch(function(err0r) {
+                console.log("Something went wrong!");
+            });
     }
-
-    function stopWebcam() {
-        webcamStream.stop();
-    }
-    //---------------------
-    // TAKE A SNAPSHOT CODE
-    //---------------------
-    var canvas, ctx;
-
-    function init() {
-        // Get the canvas and obtain a context for
-        // drawing in it
-        canvas = document.getElementById("myCanvas");
-        ctx = canvas.getContext('2d');
-    }
-
-    function snapshot() {
-        // Draws current image from the video element into the canvas
-        ctx.drawImage(video, 0,0, canvas.width, canvas.height);
-    }
-
 </script>
+</body>
 </html>
