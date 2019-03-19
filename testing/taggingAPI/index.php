@@ -1,7 +1,7 @@
 <?php
 require_once "../../vendor/autoload.php";
 
-$image_url = 'https://www.tripleimpact.nl/uploads/pics/mijn-vrouw-is-heks.png';
+$image_url = '../../uploads/img20190318133949.png';
 $api_credentials = array(
     'key' => 'acc_88d815b6f396a9d',
     'secret' => '44a387e30ddec57f1e5d982026b07e89'
@@ -21,7 +21,7 @@ $json_response = json_decode($response);
 
 use \Sightengine\SightengineClient;
 $client = new SightengineClient('1777949695', 'cWYRzhuS2FQPjEvpPSJz');
-$output = $client->check(['face-attributes'])->set_url($image_url);
+$output = $client->check(['face-attributes'])->set_file($image_url);
 if(isset($output->faces[0]->attributes)){
     if ($output->faces[0]->attributes->minor < 0.5) {
         echo "dit is een volwassene ";
@@ -45,10 +45,9 @@ echo "Het lijkt het meest op: ".$json_response->result->tags[0]->tag->en." (".$j
 </head>
 <body>
 
-    <img src="<?= $image_url; ?>"/>
+    <img src="../../uploads/img20190318133949.png"/>
 
 </body>
 </html>
 
 <?php
-//var_dump($json_response);

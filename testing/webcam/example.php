@@ -1,7 +1,7 @@
 <?php
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (count($_POST) && (strpos($_POST['img'], 'data:image/png;base64') === 0)) {
 
     $img = $_POST['img'];
     $img = str_replace('data:image/png;base64,', '', $img);
@@ -16,10 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -59,17 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     let save = document.getElementById("save")
     save.innerHTML = "save to file"
 
-    save.onclick = function() {
-        $.ajax({
-            type: "POST",
-            url: "script.php",
-            data: {
-                imgBase64: dataURL
-            }
-        }).done(function (o) {
-            console.log('saved');
-        });
-    }
+
     capture.onclick = function() {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
@@ -77,20 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      }
 
     function prepareImg() {
-        let canvas = document.getElementById('canvas');
+        let canvas = document.getElementById('captured');
         document.getElementById('inp_img').value = canvas.toDataURL();
     }
-
-
-     /*
-    let link = document.createElement('a');
-    link.innerHTML = 'download snapshot';
-    link.addEventListener('click', function(ev) {
-        link.href = canvas.toDataURL();
-        link.download = "capture.png";
-    }, false);
-    document.body.appendChild(link);
-    */
 </script>
 </body>
 </html>
