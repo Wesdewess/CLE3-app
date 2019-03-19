@@ -37,20 +37,22 @@ function sightengineResponse($a){
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>CLE3</title>
     <link rel="stylesheet" type="text/css" href="includes/style.css">
     <script src="includes/audio/sounds.js" type="text/javascript"></script>
+    <script src="includes/choices.js" type="text/javascript"></script>
 </head>
 
 <body>
     <div id="mapview">
-    <canvas id="map"></canvas>
+
     </div>
 
     <div id="webcam">
-     <video autoplay="true" id="videoElement"></video>
+     <video autoplay="autoplay" id="videoElement"></video>
      <canvas id="captured" hidden="hidden"></canvas>
      <form method="post" action="" onsubmit="prepareImg();">
         <input id="inp_img" name="img" type="hidden" value="">
@@ -91,20 +93,13 @@ function sightengineResponse($a){
         document.getElementById('inp_img').value = canvas.toDataURL();
     }
 
+    let map = document.getElementById("mapview")
 
-    //draw map on canvas
-    let canvas1 = document.getElementById('map')
-    let w = 960;
-    let h = 1080;
-    canvas1.width  = w;
-    canvas1.height = h;
-    if (canvas1.getContext) {
-        let map = canvas1.getContext('2d');
+    console.log(forest.path)
+    // for(let a=0; a < Object.keys(forest.path).length; a++){
+    //     while
+    // }
 
-        map.fillRect(480, 1000, 30, 30);
-        map.rotate(20 * Math.PI / 180);
-        map.fillRect(480, 880, 200, 30);
-    }
 </script>
 </body>
 </html>
