@@ -1,14 +1,14 @@
 let forest = {
-    path: { adult: "path",
-        0:{adult: "123", child: "456",
-            0: {adult: "henk", child: "joop",
-                0: {adult: "reeeeeeeeeeee"},
-                1: {adult: "hoi"}
+    path: {id: "path",
+        0:{id: "123", adult: "", child: "456",
+            0: {id: "henk", adult: "", child: "joop",
+                0: {id: "reeeeeeeeeeee", adult: "", child: ""},
+                1: {id: "hoi", adult: "", child: ""}
             },
-            1: {adult: "sjaak", child: "piet",}
+            1: {id: "sjaak", adult: "", child: "piet",}
         },
-        1:{adult: "patat", child: "reeeeeee",
-            0: {adult: "joe", child: "pizza",
+        1:{id: "patat", adult: "", child: "reeeeeee",
+            0: {id: "joe",adult: "", child: "pizza",
             }
         }
     }

@@ -97,16 +97,17 @@ function sightengineResponse($a){
     tree(map, forest.path)
     function tree(m,a){
         let branch = document.createElement("div")
-        branch.setAttribute("id", a.adult)
+        branch.setAttribute("class", "branch")
+        branch.setAttribute("id", a.id)
+        branch.innerHTML = a.id
         m.appendChild(branch)
+
         for(let i = 0; i < Object.keys(a).length; i++) {
-
-
             if (Object.keys(a).length > 0 && a[i] !== undefined) {
-                //is another subchoice
+                //there is another subchoice
                 tree(branch, a[i])
             } else {
-                //is no more subchoice
+                //there is no more subchoice
             }
 
         }
