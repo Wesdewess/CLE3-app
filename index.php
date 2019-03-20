@@ -94,6 +94,12 @@ function sightengineResponse($a){
     }
 
     let map = document.getElementById("mapview")
+    map.addEventListener('click', chosen)
+    function chosen(e){
+        let clickedItem = e.target;
+        this.style.backgroundColor = "lightblue";
+    }
+
     tree(map, forest.path)
     function tree(m,a){
         let branch = document.createElement("div")
