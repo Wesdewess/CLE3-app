@@ -94,11 +94,23 @@ function sightengineResponse($a){
     }
 
     let map = document.getElementById("mapview")
+    tree(map, forest.path)
+    function tree(m,a){
+        let branch = document.createElement("div")
+        branch.setAttribute("id", a.adult)
+        m.appendChild(branch)
+        for(let i = 0; i < Object.keys(a).length; i++) {
 
-    console.log(forest.path)
-    // for(let a=0; a < Object.keys(forest.path).length; a++){
-    //     while
-    // }
+
+            if (Object.keys(a).length > 0 && a[i] !== undefined) {
+                //is another subchoice
+                tree(branch, a[i])
+            } else {
+                //is no more subchoice
+            }
+
+        }
+    }
 
 </script>
 </body>
