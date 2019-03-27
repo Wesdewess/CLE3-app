@@ -42,15 +42,13 @@ function sightengineResponse($a){
     <meta charset="utf-8">
     <title>CLE3</title>
     <link rel="stylesheet" type="text/css" href="includes/style.css">
-    <script src="includes/audio/sounds.js" type="text/javascript"></script>
+    <script src="includes/functions.js" type="text/javascript"></script>
     <script src="includes/choices.js" type="text/javascript"></script>
 </head>
 
 <body>
     <div id="mapview">
-
     </div>
-
     <div id="webcam">
      <video autoplay="autoplay" id="videoElement"></video>
      <canvas id="captured" hidden="hidden"></canvas>
@@ -58,16 +56,10 @@ function sightengineResponse($a){
         <input id="inp_img" name="img" type="hidden" value="">
         <button id="save" type="submit" value="Upload"></button>
      </form>
-
-    <button class="button" id="button">button</button>
     </div>
 
 <script>
-    const button = document.getElementById('button');
-    button.addEventListener('click', sounds.hoi);
-
     let video = document.querySelector("#videoElement");
-
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({video: true})
             .then(function(stream) {
@@ -81,44 +73,25 @@ function sightengineResponse($a){
     let canvas = document.getElementById("captured")
     let save = document.getElementById("save")
     save.innerHTML = "Check"
-
     save.onclick = function() {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0);
     }
 
-    function prepareImg() {
-        let canvas = document.getElementById('captured');
-        document.getElementById('inp_img').value = canvas.toDataURL();
-    }
-
+    //settings
+    let age = 0 //0 is adult, 1 is child
+    //create clickable elements in mapview div
     let map = document.getElementById("mapview")
-    map.addEventListener('click', chosen)
-    function chosen(e){
-        let clickedItem = e.target;
-        this.style.backgroundColor = "lightblue";
+    let current = 0
+    window.onload = function begin() {
+        enterPath()
+        console.log("hey")
     }
+    //add next possible choices
 
-    tree(map, forest.path)
-    function tree(m,a){
-        let branch = document.createElement("div")
-        branch.setAttribute("class", "branch")
-        branch.setAttribute("id", a.id)
-        branch.innerHTML = a.id
-        m.appendChild(branch)
 
-        for(let i = 0; i < Object.keys(a).length; i++) {
-            if (Object.keys(a).length > 0 && a[i] !== undefined) {
-                //there is another subchoice
-                tree(branch, a[i])
-            } else {
-                //there is no more subchoice
-            }
-
-        }
-    }
-
+    //tree(map, forest.path) //old treeview function
 </script>
 </body>
 </html>
