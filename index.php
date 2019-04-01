@@ -4,7 +4,6 @@ require_once "vendor/autoload.php";
 use \Sightengine\SightengineClient;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && count($_POST) && (strpos($_POST['img'], 'data:image/png;base64') === 0)) {
-
     $img = $_POST['img'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -20,14 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && count($_POST) && (strpos($_POST['im
 
 }
 function sightengineResponse($a){
-
+    global $personAge;
     $client = new SightengineClient('1777949695', 'cWYRzhuS2FQPjEvpPSJz');
     $output = $client->check(['face-attributes'])->set_file($a);
     if (isset($output->faces[0]->attributes)) {
         if ($output->faces[0]->attributes->minor < 0.5) {
             echo "<p class='logs'>dit is een volwassene</p>";
+            $personAge = 0;
         } else {
-            echo "dit is een kind ";
+            echo "<p class='logs'>dit is een kind</p>";
+            $personAge = 1;
         }
         echo "<p class='logs'>".($output->faces[0]->attributes->minor * 100) . "% kind, " . ($output->faces[0]->attributes->male * 100) . "% man, " . ($output->faces[0]->attributes->female * 100) . "% vrouw "."</p>";
         //var_dump($output->faces[0]->attributes);
@@ -49,7 +50,7 @@ function sightengineResponse($a){
 </head>
 
 <body>
-    <age><?php echo $personAge ?></age>
+    <age id="age" hidden="hidden"><?php echo $personAge ?></age>
     <div id="mapview">
     </div>
     <div id="webcam">
@@ -82,13 +83,19 @@ function sightengineResponse($a){
     };
 
     //settings
-    let age = 0; //0 is adult, 1 is child
+    //let age = 0; //0 is adult, 1 is child
 
     //create clickable elements in mapview div
     let map = document.getElementById("mapview");
     let current = 0;
-    window.onload = function begin() {
+
+    let age = document.getElementById("age")
+    console.log("age is " + age.innerText)
+    if(age.innerText != ""){
+        age = age.innerText
         enterPath()
+    }else{
+        console.log("er is nog niet gecheckt")
     }
     //tree(map, forest.path) //old treeview function
 </script>
