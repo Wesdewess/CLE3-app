@@ -1,4 +1,40 @@
+body{
+    font-family: "Arial Black";
+    background-image: url("background.jpg");
+    background-size: cover;
+}
+#webcam{
+    position: absolute;
+    width: 20vw;
+    bottom: 0;
+    right: 0;
+}
+video{
+    width: 40%;
+    height: 40%;
+}
+#mapview{
+    float: left;
+    width: 60vw;
+    height: 99vh;
 
-.branch{
-    padding-left: 30px;
+}
+.path{
+    background-color: lightgray;
+    color: black;
+    font-size: 30px;
+}
+.oldPath{
+    background-color: grey;
+    color: lightgray;
+    font-size: 20px;
+}
+.choice{
+}
+.logs{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-bottom: 10px;
+    color: white;
 }
