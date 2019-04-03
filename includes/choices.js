@@ -1,20 +1,5 @@
 
-let p = "http://localhost/CLE3-app/includes/audio/";
-let forest = {
-    path: {id: "path",
-        0:{id: "123", adult: p+"hoi.mp3", child: p+"hoi.mp3",
-            0: {id: "henk", adult: "", child: "joop",
-                0: {id: "reeeeeeeeeeee", adult: "", child: ""},
-                1: {id: "hoi", adult: "", child: ""}
-            },
-            1: {id: "sjaak", adult: "", child: "piet",}
-        },
-        1:{id: "rechts", adult: "", child: "reeeeeee",
-            0: {id: "joe",adult: "", child: "pizza",
-            }
-        }
-    }
-}
+let p = "http://localhost/CLE3-app/includes/audio/"; //default path to audio
 
 let stories =
 [ //story 1: the big bad wolf
