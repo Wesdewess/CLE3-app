@@ -24,10 +24,7 @@ function enterPath(){
         let btn = document.createElement("button");
         btn.setAttribute("class", "choice")
         btn.addEventListener('click', function() {
-            //play dialogue
-            let audio = new Audio();
-            audio.src = s.audio[age];
-            audio.play();
+
 
             let oldChoices = document.getElementsByClassName("choice");
             while(oldChoices.length>0){
@@ -39,6 +36,10 @@ function enterPath(){
         btn.innerHTML = c.text;
         path.appendChild(btn)
     }
+    //play dialogue
+    let audio = new Audio();
+    audio.src = s.audio[age];
+    audio.play();
     map.appendChild(path)
 }
 
