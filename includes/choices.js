@@ -17,7 +17,7 @@ let stories =
         text: "Het linker pad is erg stil.",
         id: 1
     },{
-        text: "Je hoort rechts in de verte iemand wolf schreeuwen.",
+        text: "Je hoort rechts in de verte iemand wolf schreeuwen!",
         id: 2
     }]
 },{
