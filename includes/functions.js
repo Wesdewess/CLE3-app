@@ -22,7 +22,7 @@ function enterPath(){
     for(let i = 0; i < s.choices.length; i++){
         let c = s.choices[i];
         let btn = document.createElement("button");
-        btn.classList.add("choice")
+        btn.classList.add("choice");
         btn.addEventListener('click', function() {
             let oldChoices = document.getElementsByClassName("choice");
             while(oldChoices.length>0){

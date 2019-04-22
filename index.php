@@ -50,7 +50,7 @@ function sightengineResponse($a){
 </head>
 
 <body>
-    <age id="age" hidden="hidden"><?php echo $personAge ?></age>
+    <div id="age" hidden="hidden"><?php echo $personAge ?></div>
     <div id="mapview">
     </div>
     <div id="webcam">
@@ -70,7 +70,7 @@ function sightengineResponse($a){
                 video.srcObject = stream;
             })
             .catch(function(err0r) {
-                alert("Something went wrong!");
+                alert("Something went wrong!" + err0r);
             });
     }
 
@@ -82,22 +82,18 @@ function sightengineResponse($a){
         canvas.getContext('2d').drawImage(video, 0, 0);
     };
 
-    //settings
-    //let age = 0; //0 is adult, 1 is child
-
     //create clickable elements in mapview div
     let map = document.getElementById("mapview");
     let current = 0;
 
-    let age = document.getElementById("age")
-    console.log("age is " + age.innerText)
-    if(age.innerText != ""){
-        age = age.innerText
+    let age = document.getElementById("age");
+    console.log("age is " + age.innerText);
+    if(age.innerText !== ""){
+        age = age.innerText;
         enterPath()
     }else{
         console.log("er is nog niet gecheckt")
     }
-    //tree(map, forest.path) //old treeview function
 </script>
 </body>
 </html>
