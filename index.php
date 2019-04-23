@@ -63,6 +63,7 @@ function sightengineResponse($a){
     </div>
 
 <script>
+    //try to start the user's webcam
     let video = document.querySelector("#videoElement");
     if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({video: true})
@@ -74,6 +75,7 @@ function sightengineResponse($a){
             });
     }
 
+    //draw the webcam image to the canvas
     let canvas = document.getElementById("captured");
     let save = document.getElementById("save");
     save.onclick = function() {
@@ -82,15 +84,17 @@ function sightengineResponse($a){
         canvas.getContext('2d').drawImage(video, 0, 0);
     };
 
-    //create clickable elements in mapview div
     let map = document.getElementById("mapview");
     let current = 0;
 
+    //check if the age has been verified
     let age = document.getElementById("age");
     console.log("age is " + age.innerText);
+
+    //dont show a story if the age has not yet been verified
     if(age.innerText !== ""){
-        age = age.innerText;
-        enterPath()
+        age = age.innerText; //set the age to what the server has chosen
+        enterPath() //show the first part of the story
     }else{
         console.log("er is nog niet gecheckt")
     }
