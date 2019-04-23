@@ -1,8 +1,6 @@
-
 let p = "http://localhost/CLE3-app/includes/audio/"; //default path to audio
-
 let stories =
-[ //story 1: the big bad wolf
+[ 
     {
     id:0,
     name:"Intro",
